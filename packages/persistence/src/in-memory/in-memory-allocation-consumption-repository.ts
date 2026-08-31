@@ -10,6 +10,14 @@ export class InMemoryAllocationConsumptionRepository
     return this.consumptions.get(id) ?? null;
   }
 
+  async getByAllocationId(
+    allocationId: string,
+  ): Promise<readonly AllocationConsumption[]> {
+    return [...this.consumptions.values()].filter(
+      (consumption) => consumption.allocationId === allocationId,
+    );
+  }
+
   async save(consumption: AllocationConsumption): Promise<void> {
     this.consumptions.set(consumption.id, consumption);
   }
