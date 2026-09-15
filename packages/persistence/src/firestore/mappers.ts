@@ -31,6 +31,18 @@ export function moneySourceToDocument(
   };
 }
 
+export function moneySourceFromDocument(
+  document: MoneySourceDocument,
+): MoneySource {
+  return {
+    id: document.id,
+    name: document.name,
+    ...(document.description === undefined
+      ? {}
+      : { description: document.description }),
+  };
+}
+
 export function allocationToDocument(
   allocation: Allocation,
 ): AllocationDocument {
